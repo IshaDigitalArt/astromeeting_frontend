@@ -1,0 +1,101 @@
+<section class="form-container">
+  <article class="form-content">
+    <form [formGroup]="formGroup">
+      <div class="cabecera"><h3>Astromeeting</h3></div>
+      <div class="cuerpoForm"><p>Registra tus datos</p>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <input type="text" pInputText formControlName="firstName" placeholder="Nombre"/>
+        </span>
+        <div *ngIf="formGroup.get('firstName')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['required']">Introduce un nombre</small>
+          <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['pattern']">El nombre debe contener solo letras y espacios</small>
+          <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['minLength']">El nombre debe tener al menos 2 caracteres</small>
+          <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['maxLength']">El nombre no debe exceder de 50 caracteres</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <input type="text" pInputText formControlName="lastName" placeholder="Apellido"/>
+        </span>
+        <div *ngIf="formGroup.get('lastName')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['required']">Introduce un apellido</small>
+          <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['pattern']">El apellido debe contener solo letras y espacios</small>
+          <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['minLength']">El apellido debe tener al menos 2 caracteres</small>
+          <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['maxLength']">El apellido no debe exceder de 50 caracteres</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input type="text" pInputText formControlName="email" placeholder="Correo" />
+        </span>
+        <div *ngIf="formGroup.get('email')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico</small>
+          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['email']">Introduce un correo electrónico válido</small>
+          </div>
+      </div>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <i class="pi pi-key"></i>
+          <input type="password" pInputText formControlName="password" placeholder="Contraseña"/>
+        </span>
+        <div *ngIf="formGroup.get('password')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['required']">Introduce una contraseña<br></small>
+          <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['minLength']">La contraseña debe tener al menos 6 caracteres</small>
+          <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['hasNumber']">La contraseña debe contener al menos un número</small>
+          <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['hasSpecialChar']">La contraseña debe contener al menos un carácter especial</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <i class="pi pi-calendar"></i>
+          <input type="date" pInputText formControlName="fecha_nacimiento" placeholder="Fecha de nacimiento"/>
+        </span>
+        <div *ngIf="formGroup.get('fecha_nacimiento')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['required']">Introduce una fecha de nacimiento</small>
+          <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['underage']">Debes ser mayor de edad para registrarte</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <i class="pi pi-pencil"></i>
+          <textarea pInputText formControlName="descripcion" placeholder="Descríbete"></textarea>
+        </span>
+        <div *ngIf="formGroup.get('descripcion')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('descripcion')?.errors?.['maxLength']">La descripción no debe exceder de 250 caracteres</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <p-fileUpload
+            (onSelect)="onUpload($event)"
+            [multiple]="false"
+            [fileLimit]="1"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            [showCancelButton]="false"
+            [showUploadButton]="false"
+            (onRemove)="removeFile()"
+        >
+        </p-fileUpload>
+      </div>
+      <div class="form-control">
+        <p-button type="submit" label="Registrarse" [disabled]="formGroup.invalid || loading" (onClick)="handleregister()"></p-button>
+      </div>
+      <div class="form-control">
+        <p>¿ Ya tienes una cuenta ? <a routerLink="/login">Iniciar Sesión</a></p>
+      </div>
+      </div>
+    </form>
+  </article>
+  <!-- <article class="bg-blue"></article>
+  <article class="bg-orange"></article>
+  <article class="bg-green"></article> -->
+</section>
+<app-alert
+  [open]="alertConfig.open"
+  [singleMessage]="alertConfig.singleMessage"
+  [severity]="alertConfig.severity"
+  (eventCloseToast)="closeAlert()"
+></app-alert>
+<app-footer></app-footer>

@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0C0E21;
+  margin: auto;
+  font-family: 'arial', 'Lato', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+article.form-container {
+  overflow: auto;
+}
+
+.cabecera {
+  background-image: url('assets/banner1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0.5rem;
+  padding: 2px;
+
+}
+
+.form-content {
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-top:20px;
+}
+
+.cuerpoForm {
+  padding: 1.5rem;
+  margin: 2rem;
+}
+
+.form-container h3 {
+  font-family: "Just Me Again Down Here", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.form-modal {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.form-control {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+}
+
+.p-fileUpload {
+  display: flex !important;
+}
+
+input {
+  width: 400px;
+}
+
+textarea {
+  width: 400px;
+  resize: none;
+}
+.text-danger{
+  color: red;
+}

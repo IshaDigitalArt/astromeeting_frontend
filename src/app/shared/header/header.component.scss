@@ -1,0 +1,81 @@
+@import '../../scss/mixins.scss';
+
+header {
+padding-top:  1.5rem;
+
+
+  @include for-medium {
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+
+  ul {
+    list-style-type: none;
+    color: #ffffff;
+    height: 100px;
+    margin: 0px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover{
+    color:#92B2B5;
+  }
+
+  nav {
+
+    ul {
+      display: flex;
+      align-items: center;
+      // justify-content: space-around;
+      // padding-left: 0;
+      // margin: 0.75rem auto;
+
+      li {
+        width: 100%;
+        margin-left: 40px;
+
+        &:not(:first-of-type) {
+
+          a,
+          span {
+            color: inherit;
+
+            &.is-active {
+              border-bottom: 5px solid #92B2B5;
+            }
+          }
+        }
+      }
+    }
+
+    // img {
+    //   width: 80px;
+    //   height: 80px;
+    //   border-radius: 50%;
+    // }
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+h3 {
+  font-family: "Just Me Again Down Here", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+}
+.bannerFondo {
+  background-image: url('../../../assets/banner1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}

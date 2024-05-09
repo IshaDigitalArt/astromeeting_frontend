@@ -1,0 +1,45 @@
+<section class="form-container">
+  <article class="form-content">
+    <form [formGroup]="formGroup">
+      <div class="cabecera"><h3>Astromeeting</h3></div>
+      <div class="cuerpoForm"><p>Ingresa tus datos</p>
+        <div class="form-control">
+          <span class="p-input-icon-left">
+            <i class="pi pi-user"></i>
+            <input type="text" pInputText placeholder="Correo" formControlName="email"/>
+          </span>
+          <div *ngIf="formGroup.get('email')?.errors">
+            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico</small>
+            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['email']">Introduce un correo electrónico válido</small>
+          </div>
+        </div>
+
+      <div class="form-control">
+        <span class="p-input-icon-left">
+          <i class="pi pi-key"></i>
+          <input type="password" pInputText placeholder="Contraseña" formControlName="password"/>
+        </span>
+        <div *ngIf="formGroup.get('password')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['required']">Introduce una contraseña</small>
+        </div>
+      </div>
+      <div class="form-control">
+        <p-button label="Acceder" [disabled]="formGroup.invalid || loading" (onClick)="handleLogin()"></p-button>
+      </div>
+      <div class="form-control">
+        <p>¿ No tienes una cuenta ? <a routerLink="/register">Regístrate</a></p>
+      </div>
+    </div>
+    </form>
+  </article>
+  <!-- <article class="bg-1"></article>
+  <article class="bg-2"></article>
+  <article class="bg-3"></article> -->
+</section>
+<app-alert
+  [open]="alertConfig.open"
+  [singleMessage]="alertConfig.singleMessage"
+  [severity]="alertConfig.severity"
+  (eventCloseToast)="closeAlert()"
+></app-alert>
+<app-footer></app-footer>

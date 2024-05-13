@@ -24,11 +24,23 @@ export class RegisterComponent extends BaseComponent {
     this.formGroup = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, this.emailValidator()]],
       password: ['', [Validators.required, this.passwordValidator()]],
       fecha_nacimiento: ['', [Validators.required, this.ageValidator()]],
       descripcion: ['', Validators.maxLength(250)]
     });
+  }
+
+  emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const email = control.value;
+      const isAnEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+      if (!isAnEmail) {
+        return { isAnEmail: true };
+      }
+
+      return null;
+    };
   }
 
   passwordValidator(): ValidatorFn {

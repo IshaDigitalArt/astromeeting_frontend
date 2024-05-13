@@ -112,12 +112,14 @@ export class RegisterComponent extends BaseComponent {
       this.createService({ url: `${UriConstants.USERS}/create`, data: formData })
         .subscribe({
           next: () => {
+            this.alertConfiguration('SUCCESS', 'Usuario registrado con éxito');
+            this.openAlert();
             this.router.navigate(['/login']);
           },
           error: error => {
             if (error.status === 409) {
               this.errorEmailExists = true;
-              this.errorMessage = error.error.response; // Display the specific error message
+              this.errorMessage = error.error.response; // Muestra un mensaje específico de error
             } else {
               this.alertConfiguration('ERROR', 'Email ya existente');
             }

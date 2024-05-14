@@ -46,6 +46,7 @@ export class BaseComponent<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {
   public create(payload: ApiModel.ReqParams) {
     return this.createService(payload).subscribe({
       next: () => {
+        this.alertConfiguration('SUCCESS', 'Registro exitoso');
         this.openAlert();
       },
 
@@ -137,7 +138,7 @@ export class BaseComponent<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {
   }
 
   resetForm() {
-      this.formGroup.reset();
+    this.formGroup.reset();
   }
 
   isFormValid(): boolean {

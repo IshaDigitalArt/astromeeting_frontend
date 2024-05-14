@@ -112,9 +112,11 @@ export class RegisterComponent extends BaseComponent {
       this.createService({ url: `${UriConstants.USERS}/create`, data: formData })
         .subscribe({
           next: () => {
-            this.alertConfiguration('SUCCESS', 'Usuario registrado con éxito');
+            this.alertConfiguration('SUCCESS', 'Usuario registrado con éxito'); //mensaje de exito configurado en base component
             this.openAlert();
-            this.router.navigate(['/login']);
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000); // 3000ms = 3 segundos de espera para ver el mensaje de exito y redirigir al usuario al login
           },
           error: error => {
             if (error.status === 409) {

@@ -137,12 +137,8 @@ export class RegisterComponent extends BaseComponent {
             }, 3000); // 3000ms = 3 segundos de espera para ver el mensaje de exito y redirigir al usuario al login
           },
           error: error => { //Se ejecuta cuando el observable emite un error (en este caso, cuando la petición HTTP falla).
-            if (error.status === 409) {
-              this.errorEmailExists = true;
-              this.errorMessage = error.error.response; // Muestra un mensaje específico de error
-            } else {
-              this.alertConfiguration('ERROR', 'Email ya existente');
-            }
+            // Muestra un mensaje específico de error
+            this.alertConfiguration('ERROR', error)
             this.openAlert();
             this.loading = false; //Establece la propiedad loading en false, lo que indica que la petición HTTP ha finalizado.
           }

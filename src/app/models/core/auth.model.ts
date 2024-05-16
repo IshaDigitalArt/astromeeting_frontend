@@ -16,7 +16,8 @@ export namespace AuthModel {
     password: string;
     img?: string; //La URL de la imagen del usuario (opcional).
     role: 'admin' | 'user' | '';
-    active: boolean; //Un booleano que indica si el usuario está activo.
+    active: boolean;
+    id_compatibilidad:number;//Un booleano que indica si el usuario está activo.
   }
 
   //Define una constante userTokenData que contiene los datos de un token de autenticación por defecto.
@@ -29,7 +30,8 @@ export namespace AuthModel {
       email: '',
       password: '',
       role: '',
-      active: false
+      active: false,
+      id_compatibilidad:0,
     },
     iat: 0, //La fecha de emisión del token (0).
     exp: 0 //La fecha de expiración del token (0).

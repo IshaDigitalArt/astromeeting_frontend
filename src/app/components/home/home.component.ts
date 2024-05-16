@@ -41,7 +41,7 @@ export class HomeComponent extends BaseComponent<Message> {
   ) {
     super(api);
     this.userData = this.auth.readFromSesion(SessionStorageConstants.USER_TOKEN).user;
-    this.getMessages();
+    this.getMessages(this.userData.id_compatibilidad);
     this.chatService.getMessage().subscribe(val => {
       this.messages = val;
       setTimeout(() => this.updateScroll(), 0);
@@ -57,13 +57,13 @@ export class HomeComponent extends BaseComponent<Message> {
   }
 
   //El método getMessages que se utiliza para obtener los mensajes desde la API.
-  private async getMessages() {
-    this.messages = (await this.searchArrAsync({ url: UriConstants.MESSAGES })).response;
+  private async getMessages(compatibilidad:number) {
+    this.messages = (await this.searchArrAsync({ url: UriConstants.MESSAGES, params:{compatibilidad:compatibilidad} })).response;
   }
   //El método saveMessage que se utiliza para guardar un nuevo mensaje en la API.
   saveMessage() {
     if (this.inputValue) {
-      const payload = { userId: this.userData.id, content: this.inputValue };
+      const payload = { userId: this.userData.id, content: this.inputValue, compatibilidad: this.userData.id_compatibilidad};
       this.create({ url: `${UriConstants.MESSAGES}/create`, data: payload })
       this.inputValue = '';
       this.stopTyping();

@@ -72,8 +72,16 @@ export class HomeComponent extends BaseComponent<Message> {
   }
   //El método deleteMessage que se utiliza para eliminar un mensaje desde la API.
   deleteMessage(id: number) {
-    this.delete({ url: `${UriConstants.MESSAGES}/${id}` });
+    const reqParams = {
+      url: `${UriConstants.MESSAGES}/${id}`,
+      params: { compatibilidad: this.userData.id_compatibilidad }
+    };
+    this.api.deleteService(reqParams).subscribe(() => {
+      this.getMessages(this.userData.id_compatibilidad);
+    });
   }
+
+
   //El método startTyping que se utiliza para indicar que el usuario ha comenzado a escribir un mensaje.
   startTyping() {
     this.counter++;

@@ -23,6 +23,9 @@ type Post = { //Define un tipo Post que es un objeto con dos propiedades: token 
 
 //Define la clase LoginComponent que extiende la clase BaseComponent con los tipos Get y Post.
 export class LoginComponent extends BaseComponent<Get, Post> {
+  emailTouched = false;
+  passwordTouched = false;
+
   constructor( //Define el constructor del componente que recibe varios parámetros
     protected readonly api: ApiService<Get, Post>,
     private readonly fb: FormBuilder,
@@ -32,6 +35,7 @@ export class LoginComponent extends BaseComponent<Get, Post> {
     //El servicio FormBuilder que se utiliza para crear formularios.
     //El servicio Router que se utiliza para navegar entre rutas.
     //El servicio AuthService que se utiliza para autenticar usuarios.
+
   ) {
     super(api);
     this.formGroup = this.fb.group({ //La propiedad formGroup que es un formulario que se utiliza para recopilar los datos de inicio de sesión.

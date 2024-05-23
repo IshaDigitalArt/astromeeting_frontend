@@ -5,9 +5,9 @@
       <div class="cuerpoForm"><p>Registra tus datos</p>
       <div class="form-control">
         <span class="p-input-icon-left">
-          <input type="text" pInputText formControlName="firstName" placeholder="Nombre"/>
+          <input type="text" pInputText formControlName="firstName" placeholder="Nombre"(blur)="firstNameTouched = true"/>
         </span>
-        <div *ngIf="formGroup.get('firstName')?.errors">
+        <div *ngIf="firstNameTouched && formGroup.get('firstName')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['required']">Introduce un nombre</small>
           <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['pattern']">El nombre debe contener solo letras y espacios</small>
           <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['minLength']">El nombre debe tener al menos 2 caracteres</small>
@@ -16,9 +16,10 @@
       </div>
       <div class="form-control">
         <span class="p-input-icon-left">
-          <input type="text" pInputText formControlName="lastName" placeholder="Apellido"/>
+          <input type="text" pInputText formControlName="lastName" placeholder="Apellido"(blur)="lastNameTouched = true"/>
+          <!--que los mensajes de error se muestren cuando el usuario termina de escribir en cada campo del formulario (es decir, cuando el campo pierde el foco), utilizar el evento blur de Angular-->
         </span>
-        <div *ngIf="formGroup.get('lastName')?.errors">
+        <div *ngIf="lastNameTouched && formGroup.get('lastName')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['required']">Introduce un apellido</small>
           <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['pattern']">El apellido debe contener solo letras y espacios</small>
           <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['minLength']">El apellido debe tener al menos 2 caracteres</small>
@@ -28,19 +29,19 @@
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-user"></i>
-          <input type="text" pInputText formControlName="email" placeholder="Correo" />
+          <input type="text" pInputText formControlName="email" placeholder="Correo" (blur)="emailTouched = true"/>
         </span>
-        <div *ngIf="formGroup.get('email')?.errors">
-          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico</small>
-          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['email']">Introduce un correo electrónico válido</small>
+        <div *ngIf="emailTouched && formGroup.get('email')?.errors">
+          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico válido<br></small>
+          <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['isAnEmail']">Sigue el ejemplo@ejemplo.com</small>
           </div>
       </div>
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-key"></i>
-          <input type="password" pInputText formControlName="password" placeholder="Contraseña"/>
+          <input type="password" pInputText formControlName="password" placeholder="Contraseña"(blur)="passwordTouched = true"/>
         </span>
-        <div *ngIf="formGroup.get('password')?.errors">
+        <div *ngIf="passwordTouched && formGroup.get('password')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['required']">Introduce una contraseña<br></small>
           <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['minLength']">La contraseña debe tener al menos 6 caracteres</small>
           <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['hasNumber']">La contraseña debe contener al menos un número</small>
@@ -50,9 +51,9 @@
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-calendar"></i>
-          <input type="date" pInputText formControlName="fecha_nacimiento" placeholder="Fecha de nacimiento"/>
+          <input type="date" pInputText formControlName="fecha_nacimiento" placeholder="Fecha de nacimiento"(blur)="fechaNacimientoTouched = true"/>
         </span>
-        <div *ngIf="formGroup.get('fecha_nacimiento')?.errors">
+        <div *ngIf="fechaNacimientoTouched && formGroup.get('fecha_nacimiento')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['required']">Introduce una fecha de nacimiento</small>
           <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['underage']">Debes ser mayor de edad para registrarte</small>
         </div>
@@ -60,15 +61,16 @@
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-pencil"></i>
-          <textarea pInputText formControlName="descripcion" placeholder="Descríbete"></textarea>
+          <textarea pInputText formControlName="descripcion" placeholder="Descríbete"(blur)="descripcionTouched = true"></textarea>
         </span>
-        <div *ngIf="formGroup.get('descripcion')?.errors">
+        <div *ngIf="descripcionTouched && formGroup.get('descripcion')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('descripcion')?.errors?.['maxLength']">La descripción no debe exceder de 250 caracteres</small>
         </div>
       </div>
       <div class="form-control">
         <p-fileUpload
             (onSelect)="onUpload($event)"
+            chooseLabel="Añade tu foto"
             [multiple]="false"
             [fileLimit]="1"
             accept="image/*"
@@ -80,7 +82,7 @@
         </p-fileUpload>
       </div>
       <div class="form-control">
-        <p-button type="submit" label="Registrarse" [disabled]="formGroup.invalid || loading" (onClick)="handleregister()"></p-button>
+        <p-button type="submit" label="Registrarse" [disabled]="formGroup.invalid || loading" (onClick)="handleregister()" (keyup.enter)="handleregister()"></p-button>
       </div>
       <div class="form-control">
         <p>¿ Ya tienes una cuenta ? <a routerLink="/login">Iniciar Sesión</a></p>

@@ -6,25 +6,25 @@
         <div class="form-control">
           <span class="p-input-icon-left">
             <i class="pi pi-user"></i>
-            <input type="text" pInputText placeholder="Correo" formControlName="email"/>
+            <input type="text" pInputText placeholder="Correo" formControlName="email"(blur)="emailTouched = true"/>
           </span>
-          <div *ngIf="formGroup.get('email')?.errors">
-            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico</small>
-            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['email']">Introduce un correo electrónico válido</small>
+          <div *ngIf="emailTouched && formGroup.get('email')?.errors">
+            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['required']">Introduce un correo electrónico válido</small>
+            <small class="text-danger" *ngIf="formGroup.get('email')?.errors?.['email']">Sigue el ejemplo@ejemplo.com</small>
           </div>
         </div>
-
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-key"></i>
-          <input type="password" pInputText placeholder="Contraseña" formControlName="password"/>
+          <input type="password" pInputText placeholder="Contraseña" formControlName="password"(blur)="passwordTouched = true"/>
+          <!--que los mensajes de error se muestren cuando el usuario termina de escribir en cada campo del formulario (es decir, cuando el campo pierde el foco), utilizar el evento blur de Angular-->
         </span>
-        <div *ngIf="formGroup.get('password')?.errors">
+        <div *ngIf="passwordTouched && formGroup.get('password')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('password')?.errors?.['required']">Introduce una contraseña</small>
         </div>
       </div>
       <div class="form-control">
-        <p-button label="Acceder" [disabled]="formGroup.invalid || loading" (onClick)="handleLogin()"></p-button>
+        <p-button type="submit" label="Acceder" [disabled]="formGroup.invalid || loading" (onClick)="handleLogin()"  (keyup.enter)="handleLogin()"></p-button>
       </div>
       <div class="form-control">
         <p>¿ No tienes una cuenta ? <a routerLink="/register">Regístrate</a></p>

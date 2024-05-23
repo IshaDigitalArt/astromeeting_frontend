@@ -90,3 +90,28 @@ textarea {
 .text-danger{
   color: red;
 }
+
+//color de los botones de envio de los form
+.p-button:disabled{
+  background-color: #92B2B5;
+  border-color: #92B2B5;
+}
+.p-button:enabled{
+  background-color: #92B2B5;
+  border-color: #92B2B5;
+}
+.form-control .p-button:enabled:hover {
+  background-color:#4b5c5e;
+  border-color:#4b5c5e;
+}
+
+//en concreto los de mandar la imagen de perfil
+.p-fileupload .p-button {
+  background-color: #92B2B5 !important;
+  border-color: #92B2B5 !important;
+}
+.p-fileupload .p-button:hover {
+  background-color: #4b5c5e !important;
+  border-color: #4b5c5e !important;
+}
+

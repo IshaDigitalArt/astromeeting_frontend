@@ -23,6 +23,13 @@ export class RegisterComponent extends BaseComponent {
   //Define una propiedad userImg que almacena la imagen del usuario. Inicialmente, está vacía.
   //Define una propiedad errorEmailExists que indica si el correo electrónico ya existe. Inicialmente, está en false.
   //Define una propiedad errorMessage que almacena el mensaje de error. Es opcional.
+  firstNameTouched = false;
+  lastNameTouched = false;
+  emailTouched = false;
+  passwordTouched = false;
+  fechaNacimientoTouched = false;
+  descripcionTouched = false;
+  //Estas variables se utilizarán para rastrear si el campo ha perdido el foco o no. Y pasarle true en los campos cuando el usuario no los rellene correctamente o los abandone
 
 
   //Define el constructor del componente. Inicializa las propiedades y crea el formulario con los campos necesarios para el registro.

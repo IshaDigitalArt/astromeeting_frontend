@@ -13,9 +13,14 @@
             Inicio
           </a>
         </li>
-        <li *ngIf="showMenuLogin">
+        <!-- <li *ngIf="showMenuLogin">
           <a routerLink="/login" [routerLinkActive]="['is-active']">
             Iniciar sesión
+          </a>
+        </li> -->
+        <li *ngIf="!showMenuLogin">
+          <a routerLink="/perfil" [routerLinkActive]="['is-active']">
+            Perfil
           </a>
         </li>
         <li *ngIf="!showMenuLogin">

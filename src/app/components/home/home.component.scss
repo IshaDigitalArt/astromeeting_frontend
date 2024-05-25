@@ -161,8 +161,9 @@ $messages-background: #F7F7F7;
     }
   }
 }
+
 //manera bestial de aplicar un hover gris al envio del chat
-::ng-deep .input p-button[type="submit"] .p-button:hover{
+::ng-deep .input p-button[type="submit"] .p-button:hover {
   background-color: #4b5c5e;
   border-color: #4b5c5e;
 }

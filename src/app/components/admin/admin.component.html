@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="admin-container">
+  <div class="adminPanel">
+    <div class="contact bar">
+      <img src="{{host}}/{{userData.img ? userData.img:'default.png'}}" alt="user">
+      <div class="name">
+        {{userData.firstName}} {{userData.lastName}}
+      </div>
+    </div>
+    <div class="tablaUsuarios">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre Usuario</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}  {{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <p-button type="button" label="Eliminar" (onClick)="handleDeleteUser(user.id)" class="eliminarUsuarios"></p-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<app-alert
+  [open]="alertConfig.open"
+  [singleMessage]="alertConfig.singleMessage"
+  [severity]="alertConfig.severity"
+  (eventCloseToast)="closeAlert()"
+></app-alert>
+<app-footer></app-footer>

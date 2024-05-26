@@ -17,11 +17,19 @@ import { ApiModel } from '@mean/models';
 
 //Define la clase ApiService que es un servicio que proporciona métodos para realizar peticiones HTTP a una API.
 export class ApiService<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {}> {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  getById(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<GET>> {
+    return this.http.get<ApiModel.ResponseParams<GET>>(reqParams.url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
   /** Para realizar las peticiones GET */
   //Define un método que realiza una petición GET a la API y devuelve un observable que emite la respuesta.
-  getService(reqParams: ApiModel.ReqParams): Observable< ApiModel.ResponseParams<GET>> {
+  getService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<GET>> {
     const options = {
       params: reqParams.params ? reqParams.params : {},
     };
@@ -34,7 +42,7 @@ export class ApiService<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {}> 
   }
 
   //Define un método que realiza una petición GET a la API y devuelve un observable que emite la respuesta.
-  getListService(reqParams: ApiModel.ReqParams): Observable< ApiModel.ResponseParams<GET[]>> {
+  getListService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<GET[]>> {
     const options = {
       params: reqParams.params ? reqParams.params : {},
     };
@@ -53,7 +61,7 @@ export class ApiService<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {}> 
     const options = {
       params: reqParams.params ? reqParams.params : {},
     };
-    return this.http.post<ApiModel.ResponseParams<POST>>(reqParams.url, reqParams.data, options ).pipe(
+    return this.http.post<ApiModel.ResponseParams<POST>>(reqParams.url, reqParams.data, options).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
@@ -62,19 +70,37 @@ export class ApiService<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {}> 
   /** Para realizar las peticiones DELETE*/
   //Define un método que realiza una petición DELETE a la API y devuelve un observable que emite la respuesta.
   deleteService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<DELETE>> {
-    const options = {
-      body: reqParams.data,
-      params: reqParams.params,
-    };
-    return this.http.delete<ApiModel.ResponseParams<DELETE>>(reqParams.url, options).pipe(
+    return this.http.delete<ApiModel.ResponseParams<DELETE>>(reqParams.url).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
   }
 
+  /** Para realizar las peticiones PATCH */
+  patchService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<PATCH>> {
+    const options = {
+      params: reqParams.params ? reqParams.params : {},
+    };
+    return this.http.patch<ApiModel.ResponseParams<PATCH>>(reqParams.url, reqParams.data, options).pipe(
+      map((res) => res),
+      catchError(this.handleError)
+    );
+  }
+
+  // /** Para realizar las peticiones PUT */
+  // putService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<PUT>> {
+  //   const options = {
+  //     params: reqParams.params ? reqParams.params : {},
+  //   };
+  //   return this.http.put<ApiModel.ResponseParams<PUT>>(reqParams.url, reqParams.data, options).pipe(
+  //     map((res) => res),
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+
   // Define un método que se utiliza para manejar errores que ocurren durante las peticiones HTTP. Devuelve un observable que emite un error personalizado.
   handleError(error: HttpErrorResponse) {
     return throwError(() => error.error.response || 'Ocurrió un error');
   }
-
 }

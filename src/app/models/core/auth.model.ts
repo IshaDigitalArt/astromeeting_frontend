@@ -14,6 +14,8 @@ export namespace AuthModel {
     lastName: string;
     email: string;
     password: string;
+    fecha_nacimiento:Date;
+    descripcion:string;
     img?: string; //La URL de la imagen del usuario (opcional).
     role: 'admin' | 'user' | '';
     active: boolean;
@@ -29,6 +31,8 @@ export namespace AuthModel {
       lastName: '',
       email: '',
       password: '',
+      fecha_nacimiento:new Date(),
+      descripcion:'',
       role: '',
       active: false,
       id_compatibilidad:0,

@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
-import { LoginComponent, RegisterComponent, HomeComponent, PerfilComponent } from '@mean/public';
-import { HomeGuard, LoginGuard, PerfilGuard } from "./guards";
+import { LoginComponent, RegisterComponent, HomeComponent, PerfilComponent, AdminComponent} from '@mean/public';
+import { HomeGuard, LoginGuard, PerfilGuard, AdminGuard } from "./guards";
 //Importa el decorador NgModule desde el módulo @angular/core. Importa los símbolos Routes, RouterModule y PreloadAllModules desde el módulo @angular/router.
 //Importa los componentes LoginComponent, RegisterComponent y HomeComponent desde el módulo @mean/public.
 //Importa los guardias HomeGuard y LoginGuard desde el archivo guards.
@@ -28,6 +28,11 @@ const routes: Routes = [
     path: 'perfil',
     component: PerfilComponent,
     canActivate: [PerfilGuard]
+  },
+  { //Ruta para el admin
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuard]
   },
 
   { //La ruta de catch-all ('**'), que se redirige a la ruta raíz ('') si no se encuentra una ruta que coincida.

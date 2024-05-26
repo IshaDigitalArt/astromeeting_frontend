@@ -1,0 +1,84 @@
+$text-1: #333;
+$text-2: #666;
+$text-3: #999;
+$messages-background: #F7F7F7;
+
+.contact {
+  position: relative;
+  margin-bottom: 1rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .name {
+    font-weight: 500;
+    margin-bottom: 0.125rem;
+  }
+}
+
+.adminPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow:
+    0 0 8rem 0 rgba(black, 0.1),
+    0rem 2rem 4rem -3rem rgba(black, 0.5);
+  max-height: 600px;
+  overflow-y: auto;
+
+  .contact.bar {
+    flex-basis: 3.5rem;
+    flex-shrink: 0;
+    margin: 1rem;
+    box-sizing: border-box;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: Arial,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    thead tr {
+      background-color: #92B2B5;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #dddddd;
+
+      &:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      &:last-of-type {
+        border-bottom: 2px solid #92B2B5;
+      }
+    }
+
+    .p-button:enabled:hover {
+      background-color: red !important;
+      ;
+    }
+  }
+
+}

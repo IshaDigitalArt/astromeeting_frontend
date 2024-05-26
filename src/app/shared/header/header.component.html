@@ -18,6 +18,12 @@
             Iniciar sesión
           </a>
         </li> -->
+        <!-- Que solo puedan acceder los admin  -->
+        <li *ngIf="userRol === 1">
+          <a routerLink="/admin" [routerLinkActive]="['is-active']">
+            Admin panel
+          </a>
+        </li>
         <li *ngIf="!showMenuLogin">
           <a routerLink="/perfil" [routerLinkActive]="['is-active']">
             Perfil

@@ -141,7 +141,7 @@ export class RegisterComponent extends BaseComponent {
             this.openAlert(); //Abre la alerta configurada.
             setTimeout(() => {
               this.router.navigate(['/login']);
-            }, 3000); // 3000ms = 3 segundos de espera para ver el mensaje de exito y redirigir al usuario al login
+            }, 2000); // 3000ms = 3 segundos de espera para ver el mensaje de exito y redirigir al usuario al login
           },
           error: error => { //Se ejecuta cuando el observable emite un error (en este caso, cuando la petición HTTP falla).
             // Muestra un mensaje específico de error

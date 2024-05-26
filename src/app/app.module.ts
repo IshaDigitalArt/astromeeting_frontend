@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core';
 import { SharedHeaderModule, SharedFooterModule, SharedAlertModule } from '@mean/shared';
-import { LoginComponent, RegisterComponent, HomeComponent, PerfilComponent } from '@mean/public';
+import { LoginComponent, RegisterComponent, HomeComponent, PerfilComponent, AdminComponent } from '@mean/public';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -25,7 +25,8 @@ const config: SocketIoConfig = { url: UriConstants.HOST, options: {} };
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PerfilComponent
+    PerfilComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

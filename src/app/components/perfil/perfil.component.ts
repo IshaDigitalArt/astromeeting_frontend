@@ -35,8 +35,8 @@ export class PerfilComponent extends BaseComponent {
     this.userId = 0;
     this.userData = this.auth.readFromSesion(SessionStorageConstants.USER_TOKEN).user;
     this.formGroup = this.fb.group({
-      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]],
       // currentPassword: ['', [Validators.required, this.isCorrectPassword()]],
       // newPassword: ['', [Validators.required, this.passwordValidator()]],
       fecha_nacimiento: ['', [Validators.required, this.ageValidator()]],

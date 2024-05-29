@@ -17,6 +17,7 @@ export namespace AuthModel {
     fecha_nacimiento:Date;
     descripcion:string;
     img?: string; //La URL de la imagen del usuario (opcional).
+    roleId:number;
     role: 'admin' | 'user' | '';
     active: boolean;
     id_compatibilidad:number;//Un booleano que indica si el usuario está activo.
@@ -33,6 +34,7 @@ export namespace AuthModel {
       password: '',
       fecha_nacimiento:new Date(),
       descripcion:'',
+      roleId:0,
       role: '',
       active: false,
       id_compatibilidad:0,

@@ -22,10 +22,10 @@ export class AdminGuard {
   //Define el método canActivate que se llama antes de que se active la ruta protegida por este guard.
   canActivate(): boolean{
     const checkSession= this.auth.readFromSesion(SessionStorageConstants.USER_TOKEN) //Obtiene la sesión del usuario desde el almacenamiento de sesión.
-    if(checkSession.user.role === 'admin'){ //Verifica si el usuario ya está autenticado y cumple el rol de Admin (role === 'admin').
-      this.router.navigate(['/login']); //Si el usuario ya está autenticado, navega a la ruta raíz.
-      return false; //Devuelve false para indicar que la ruta no se puede activar.
+    if(checkSession.user.roleId === 1){ //Verifica si el usuario ya está autenticado y cumple el rol de Admin (roleId === 1).
+      return true; //Devuelve true para indicar que la ruta se puede activar.
     }
-    return true; //Si el usuario no está autenticado, devuelve true para indicar que la ruta se puede activar.
+    this.router.navigate(['/login']); //Si el usuario no está autenticado, navega a la ruta de login.
+    return false; //Devuelve false para indicar que la ruta no se puede activar.
   }
 }

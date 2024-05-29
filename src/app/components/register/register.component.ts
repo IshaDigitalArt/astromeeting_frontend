@@ -40,8 +40,8 @@ export class RegisterComponent extends BaseComponent {
   ) {
     super(api);
     this.formGroup = this.fb.group({
-      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2), Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]], //que admita alfabeto español, tildes, ñ
+      lastName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', [Validators.required, this.emailValidator()]],
       password: ['', [Validators.required, this.passwordValidator()]],
       fecha_nacimiento: ['', [Validators.required, this.ageValidator()]],

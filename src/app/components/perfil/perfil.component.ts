@@ -9,13 +9,16 @@ import { SessionStorageConstants, UriConstants } from '@mean/utils';
 
 @Component({
   selector: 'app-perfil',
-  templateUrl: './perfil.component.html'
+  templateUrl: './perfil.component.html',
+  styleUrls:['./perfil.component.scss'],
 })
 export class PerfilComponent extends BaseComponent {
   userImg: File | null = null;
   userId: number; // Agregué esta propiedad para almacenar el ID del usuario
   userData: AuthModel.User;
   errorMessage?: string;
+  horoscopo?: string;
+  descripcionHoroscopo?: string;
   firstNameTouched = false;
   lastNameTouched = false;
   // currentPasswordTouched = false;
@@ -37,8 +40,6 @@ export class PerfilComponent extends BaseComponent {
     this.formGroup = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*'), Validators.minLength(2), Validators.maxLength(50)]],
-      // currentPassword: ['', [Validators.required, this.isCorrectPassword()]],
-      // newPassword: ['', [Validators.required, this.passwordValidator()]],
       fecha_nacimiento: ['', [Validators.required, this.ageValidator()]],
       descripcion: ['', Validators.maxLength(250)]
     });
@@ -46,53 +47,8 @@ export class PerfilComponent extends BaseComponent {
   // es un método de ciclo de vida de Angular que se llama cuando el componente se inicializa. En este caso, estamos utilizando este método para inicializar el formulario con los datos del usuario
   ngOnInit(): void {
     this.getUserData(this.userData.id); //Este método llama a la función getUserData() que se encarga de obtener los datos del usuario desde la API. En este caso, se supone que getUserData() hace una solicitud HTTP GET a la API para obtener los datos del usuario autenticado y los almacena en la propiedad userData.
+    this.returnHoroscopo();
   }
-
-  // //Que sea la contraseña que el usuario tenia
-  // // En tu archivo perfil.component.ts
-  // isCorrectPassword(): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: any } | null => {
-  //     const enteredPassword = control.value;
-
-  //     // Aquí haces una solicitud a tu backend para verificar la contraseña
-  //     this.api.verifyPassword(enteredPassword).subscribe({
-  //       next: (response) => {
-  //         if (!response.isCorrect) {
-  //           control.setErrors({ incorrectPassword: true });
-  //         }
-  //       },
-  //       error: error => {
-  //         console.log(error);
-  //       }
-  //     });
-
-  //     return null;
-  //   };
-  // }
-
-  // //valida la contraseña según las especificaciones sugeridas
-  // passwordValidator(): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: any } | null => {
-  //     const password = control.value;
-  //     const hasMinLength = password.length >= 6;
-  //     const hasNumber = /\d/.test(password);
-  //     const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
-
-  //     if (!hasMinLength) {
-  //       return { minLength: true };
-  //     }
-
-  //     if (!hasNumber) {
-  //       return { hasNumber: true };
-  //     }
-
-  //     if (!hasSpecialChar) {
-  //       return { hasSpecialChar: true };
-  //     }
-
-  //     return null;
-  //   };
-  // }
 
   //valida la edad en +18
   ageValidator(): ValidatorFn {
@@ -132,7 +88,7 @@ export class PerfilComponent extends BaseComponent {
       const ano = new Date(this.userData.fecha_nacimiento).getUTCFullYear();
       const mes = new Date(this.userData.fecha_nacimiento).getMonth() + 1;
       const dia = new Date(this.userData.fecha_nacimiento).getDate();
-      console.log(ano + '-' + mes + '-' + dia);
+      // console.log(ano + '-' + mes + '-' + dia);
       this.formGroup.patchValue(this.userData);
     });
   }
@@ -142,6 +98,19 @@ export class PerfilComponent extends BaseComponent {
     const mes = new Date(this.userData.fecha_nacimiento).getMonth() + 1;
     const dia = new Date(this.userData.fecha_nacimiento).getDate();
     return (dia + '-' + mes + '-' + ano)
+  }
+  returnHoroscopo() {
+    const id_horoscopo = this.userData.id_horoscopo; // Obtén el id_horoscopo del usuario logueado
+    this.api.getByHoroscope({ url: `${UriConstants.USERS}/getByHoroscope?id=${id_horoscopo}` }).subscribe((response: any) => {
+      if (response.response && response.response[0]) {
+        this.horoscopo = response.response[0].zodiaco; // Almacena el nombre del horóscopo en la variable horoscopo
+        this.descripcionHoroscopo = response.response[0].descripcion;
+      } else {
+        console.log('Respuesta del servidor:', response);
+      }
+    }, error => {
+      console.error(error);
+    });
   }
 
   // Modifiqué este método para que actualice el perfil del usuario

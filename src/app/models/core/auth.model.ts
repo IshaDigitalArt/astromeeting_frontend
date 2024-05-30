@@ -21,6 +21,7 @@ export namespace AuthModel {
     role: 'admin' | 'user' | '';
     active: boolean;
     id_compatibilidad:number;//Un booleano que indica si el usuario está activo.
+    id_horoscopo:number;
   }
 
   //Define una constante userTokenData que contiene los datos de un token de autenticación por defecto.
@@ -38,6 +39,7 @@ export namespace AuthModel {
       role: '',
       active: false,
       id_compatibilidad:0,
+      id_horoscopo:0,
     },
     iat: 0, //La fecha de emisión del token (0).
     exp: 0 //La fecha de expiración del token (0).

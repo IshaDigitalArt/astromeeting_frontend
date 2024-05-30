@@ -27,6 +27,16 @@ export class ApiService<GET = {}, POST = {}, PUT = {}, PATCH = {}, DELETE = {}> 
       catchError(this.handleError)
     );
   }
+  //Para sacar el horoscopo del usuario
+  getByHoroscope(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<GET>> {
+    return this.http.get<ApiModel.ResponseParams<GET>>(reqParams.url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   /** Para realizar las peticiones GET */
   //Define un método que realiza una petición GET a la API y devuelve un observable que emite la respuesta.
   getService(reqParams: ApiModel.ReqParams): Observable<ApiModel.ResponseParams<GET>> {

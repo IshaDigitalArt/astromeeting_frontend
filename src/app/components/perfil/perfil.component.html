@@ -1,8 +1,10 @@
-<section class="form-container">
-  <article class="form-content">
+<app-header></app-header>
+  <section class="form-content-perfil">
     <form [formGroup]="formGroup">
-      <div class="cabecera"><h3>Astromeeting</h3></div>
-      <div class="cuerpoForm"><h1>Actualiza tus datos</h1>
+       <div><h1>Actualiza tus datos</h1></div>
+      <div class="cuerpoPerfil">
+        <div class="columna">
+      <div class="textoPerfil"><p>Tu nombre:</p></div>
       <div class="form-control">
         <span class="p-input-icon-left">
           <input type="text" pInputText formControlName="firstName" [value]="formGroup.get('firstName')?.value" placeholder="Nombre" (blur)="firstNameTouched = true"/>
@@ -14,6 +16,7 @@
           <small class="text-danger" *ngIf="formGroup.get('firstName')?.errors?.['maxLength']">El nombre no debe exceder de 50 caracteres</small>
         </div>
       </div>
+      <div class="textoPerfil"><p>Tu apellido:</p></div>
       <div class="form-control">
         <span class="p-input-icon-left">
           <input type="text" pInputText formControlName="lastName" [value]="formGroup.get('lastName')?.value" placeholder="Apellido" (blur)="lastNameTouched = true"/>
@@ -26,13 +29,8 @@
           <small class="text-danger" *ngIf="formGroup.get('lastName')?.errors?.['maxLength']">El apellido no debe exceder de 50 caracteres</small>
         </div>
       </div>
-      <div class="form-control">
-        <span class="p-input-icon-left">
-          <i class="pi pi-calendar"></i>
-      <input type="text" pInputText [value]="this.returnFechaNacimiento()" disabled/>
-     </span>
-     </div>
-      <div class="form-control">
+      <div class="textoPerfil"><p>Naciste este día: {{returnFechaNacimiento()}}</p></div>
+        <div class="form-control">
         <span class="p-input-icon-left">
           <!-- <i class="pi pi-calendar"></i> -->
           <input type="date" pInputText formControlName="fecha_nacimiento" placeholder="Fecha de nacimiento"(blur)="fechaNacimientoTouched = true"/>
@@ -41,7 +39,12 @@
           <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['required']">Introduce una fecha de nacimiento</small>
           <small class="text-danger" *ngIf="formGroup.get('fecha_nacimiento')?.errors?.['underage']">Debes ser mayor de edad para registrarte</small>
         </div>
-      </div>
+        </div>
+        <div class="textoPerfil"><p>Este es tu horoscopo: {{horoscopo}}</p></div>
+        <div class="textoPerfil"><p>Así eres: {{descripcionHoroscopo}}</p></div>
+        </div>
+        <div class="columna">
+        <div class="textoPerfil"><p>Así te defines:</p></div>
       <div class="form-control">
         <span class="p-input-icon-left">
           <i class="pi pi-pencil"></i>
@@ -50,7 +53,8 @@
         <div *ngIf="descripcionTouched && formGroup.get('descripcion')?.errors">
           <small class="text-danger" *ngIf="formGroup.get('descripcion')?.errors?.['maxLength']">La descripción no debe exceder de 250 caracteres</small>
         </div>
-        <div class="cambiaFoto"><p>Cambia tu foto:</p><img src="{{host}}/{{userData.img ? userData.img:'default.png'}}" alt="user"></div>
+        <div class="cambiaFoto"><p>Tu foto actual:</p><img src="{{host}}/{{userData.img ? userData.img:'default.png'}}" alt="user"></div>
+        <div class="textoPerfil"><p>Cambia tu foto:</p></div>
         <div class="form-control">
           <p-fileUpload
             (onSelect)="onUpload($event)"
@@ -65,6 +69,9 @@
         >
           </p-fileUpload>
         </div>
+      </div>
+    </div>
+        </div>
         <div class="botones">
         <div class="form-control">
           <p-button type="submit" label="Actualizar" [disabled]="formGroup.invalid || loading" (onClick)="handleUpdate()" class="botonUpdate"></p-button>
@@ -76,7 +83,10 @@
         <div class="form-control">
           <p-button type="button" label="Volver"(onClick)="comeBack()"></p-button>
         </div>
-        </div>
+
+      </div>
+    </form>
+  </section>
 <app-alert
   [open]="alertConfig.open"
   [singleMessage]="alertConfig.singleMessage"

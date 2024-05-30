@@ -1,0 +1,70 @@
+//Estilos del perfil
+//separacion en columna de mi perfil
+.form-content-perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    background: white;
+    box-shadow:
+      0 0 8rem 0 rgba(black, 0.1),
+      0rem 2rem 4rem -3rem rgba(black, 0.5);
+    text-align: center;
+    overflow-y: auto;
+}
+
+.cuerpoPerfil {
+  margin: 2rem;
+  display: flex;
+}
+
+.columna {
+  flex: 1;
+  padding: 20px;
+}
+
+.cabecera,
+h1,
+.botones {
+  align-self: center;
+  padding-top: 10px;
+}
+
+//texto de los input de mi perfil
+.textoPerfil {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+//tamaño icono perfil de la pagina perfil y texto
+.form-control .cambiaFoto img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: -1rem;
+}
+
+.form-control .cambiaFoto p {
+  display: flex;
+}
+
+//colocacion de los botones de la pagina perfil de usuario y color
+.botones {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+
+::ng-deep .botonEliminar .p-button:hover {
+  background-color: red !important;
+  border: red !important;
+}
+
+::ng-deep .botonUpdate .p-button:enabled:hover {
+  background-color: green !important;
+  border: green !important;
+}
+

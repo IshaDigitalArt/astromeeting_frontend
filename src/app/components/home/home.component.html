@@ -9,7 +9,8 @@
     </div>
     <div *ngIf="messages.length!==0" class="messages" id="chat" #scrolles>
       <div *ngFor="let message of messages" class="message {{userData.id === message.userId ? 'me' : 'others'}}">
-        <span class="user-name">{{message.firstName}} {{message.lastName}}</span> {{message.content}}
+        <span class="user-name" [title]="descripcionCompatibilidad">{{message.firstName}} {{message.lastName}}</span>{{message.content}}
+        <!-- <span class="user-name">{{message.firstName}} {{message.lastName}}</span> {{message.content}} -->
         <em *ngIf="userData.id === message.userId" class="more-info"  (click)="op.toggle($event)">...</em>
         <div class="card-end">
           <p-overlayPanel #op>

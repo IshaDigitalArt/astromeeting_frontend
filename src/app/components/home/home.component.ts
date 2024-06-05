@@ -18,8 +18,9 @@ export class HomeComponent extends BaseComponent<Message> {
   showTyping = false;
   messages: Message[] = [];
   userData: AuthModel.User;
-  inputValue = ''
+  inputValue = '';
   counter = 0;
+  descripcionCompatibilidad?: string;
   //La propiedad showTyping que indica si se está mostrando un mensaje de "escribiendo...".
   //La propiedad messages que es un array de mensajes.
   //La propiedad userData que es un objeto que contiene información del usuario autenticado.
@@ -55,7 +56,9 @@ export class HomeComponent extends BaseComponent<Message> {
       }
     })
   }
-
+  ngOnInit() {
+    this.returnCompatibilidad();
+  }
   //El método getMessages que se utiliza para obtener los mensajes desde la API.
   private async getMessages(compatibilidad:number) {
     this.messages = (await this.searchArrAsync({ url: UriConstants.MESSAGES, params:{compatibilidad:compatibilidad} })).response;
@@ -91,6 +94,19 @@ export class HomeComponent extends BaseComponent<Message> {
   stopTyping() {
     this.counter = 0;
     this.chatService.sendTyping(false);
+  }
+  //Saca la compatibilidad entre los usuarios
+  returnCompatibilidad() {
+    const id_compatibilidad = this.userData.id_compatibilidad; // Obtén el id_compatibilidad del usuario logueado
+    this.api.getByCompatibilidad({ url: `${UriConstants.USERS}/getByCompatibilidad?id=${id_compatibilidad}` }).subscribe((response: any) => {
+      if (response.response && response.response[0]) {
+        this.descripcionCompatibilidad = response.response[0].descripcion; // Almacena la descripción de la compatibilidad
+      } else {
+        console.log('Respuesta del servidor:', response);
+      }
+    }, error => {
+      console.error(error);
+    });
   }
   //El método updateScroll que se utiliza para scrollear el contenido hacia abajo.
   updateScroll() {

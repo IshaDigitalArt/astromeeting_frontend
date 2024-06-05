@@ -19,13 +19,16 @@ export class PerfilComponent extends BaseComponent {
   errorMessage?: string;
   horoscopo?: string;
   descripcionHoroscopo?: string;
+
+  //para evitar que salgan las líneas en rojo antes de que rellenes el campo
+  //Estas variables se utilizarán para rastrear si el campo ha perdido el foco o no. Y pasarle true en los campos cuando el usuario no los rellene correctamente o los abandone
   firstNameTouched = false;
   lastNameTouched = false;
   // currentPasswordTouched = false;
   // newPasswordTouched = false;
   fechaNacimientoTouched = false;
   descripcionTouched = false;
-  //Estas variables se utilizarán para rastrear si el campo ha perdido el foco o no. Y pasarle true en los campos cuando el usuario no los rellene correctamente o los abandone
+
 
   //Define el constructor del componente. Inicializa las propiedades y crea el formulario con los campos necesarios para el nuevo registro.
   constructor(
@@ -92,13 +95,14 @@ export class PerfilComponent extends BaseComponent {
       this.formGroup.patchValue(this.userData);
     });
   }
-
+  //Devolver fecha de nacimiento al usuario
   returnFechaNacimiento() {
     const ano = new Date(this.userData.fecha_nacimiento).getUTCFullYear();
     const mes = new Date(this.userData.fecha_nacimiento).getMonth() + 1;
     const dia = new Date(this.userData.fecha_nacimiento).getDate();
     return (dia + '-' + mes + '-' + ano)
   }
+  //Devolver horoscopo al usuario
   returnHoroscopo() {
     const id_horoscopo = this.userData.id_horoscopo; // Obtén el id_horoscopo del usuario logueado
     this.api.getByHoroscope({ url: `${UriConstants.USERS}/getByHoroscope?id=${id_horoscopo}` }).subscribe((response: any) => {

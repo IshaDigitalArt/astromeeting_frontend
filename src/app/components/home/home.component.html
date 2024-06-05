@@ -2,25 +2,25 @@
 <div class="chat-container">
   <div class="chat">
     <div class="contact bar">
-      <img src="{{host}}/{{userData.img ? userData.img:'default.png'}}" alt="user">
+      <img src="{{host}}/{{userData.img ? userData.img:'default.png'}}" alt="user"> <!-- Imagen del usuario -->
       <div class="name">
-        {{userData.firstName}} {{userData.lastName}}
+        {{userData.firstName}} {{userData.lastName}}<!-- Se muestran el nombre y apellido del usuario -->
       </div>
     </div>
-    <div *ngIf="messages.length!==0" class="messages" id="chat" #scrolles>
+    <div *ngIf="messages.length!==0" class="messages" id="chat" #scrolles><!-- Contenedor de mensajes -->
       <div *ngFor="let message of messages" class="message {{userData.id === message.userId ? 'me' : 'others'}}">
-        <span class="user-name" [title]="descripcionCompatibilidad">{{message.firstName}} {{message.lastName}}</span>{{message.content}}
+        <span class="user-name" [title]="descripcionCompatibilidad">{{message.firstName}} {{message.lastName}}</span>{{message.content}}<!-- Muestra el nombre del usuario y el contenido del mensaje -->
         <!-- <span class="user-name">{{message.firstName}} {{message.lastName}}</span> {{message.content}} -->
-        <em *ngIf="userData.id === message.userId" class="more-info"  (click)="op.toggle($event)">...</em>
+        <em *ngIf="userData.id === message.userId" class="more-info"  (click)="op.toggle($event)">...</em><!-- Muestra más información si el mensaje es del usuario actual -->
         <div class="card-end">
-          <p-overlayPanel #op>
+          <p-overlayPanel #op><!-- Panel de superposición para mostrar más opciones -->
               <ng-template pTemplate="content">
-                <em class="pi pi-trash" style="cursor: pointer;" (click)="deleteMessage(message.id)"></em>
+                <em class="pi pi-trash" style="cursor: pointer;" (click)="deleteMessage(message.id)"></em><!-- Opción para eliminar el mensaje -->
               </ng-template>
           </p-overlayPanel>
       </div>
       </div>
-      <div class="message stark" *ngIf="showTyping">
+      <div class="message stark" *ngIf="showTyping"><!-- Muestra el indicador de escritura -->
         <div class="typing typing-1"></div>
         <div class="typing typing-2"></div>
         <div class="typing typing-3"></div>

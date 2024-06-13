@@ -7,7 +7,7 @@
         {{userData.firstName}} {{userData.lastName}}
       </div>
     </div>
-    <div class="tablaUsuarios">
+    <div class="tablaUsuarios" >
       <table>
         <thead>
           <tr>
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
+          <tr *ngFor="let user of users" class="patata">
             <td>{{user.id}}</td>
             <td>{{user.firstName}}  {{user.lastName}}</td>
             <td>{{user.email}}</td>
@@ -29,7 +29,16 @@
         </tbody>
       </table>
     </div>
-
+    <div class="input">
+      <input
+        type="text"
+        placeholder="Nombre de usuario"
+        [(ngModel)]="searchterm"
+        (keyup.enter)="getUsers()"
+      />
+      <!-- hemos agregado un binding de dos vías con ngModel para vincular el término de búsqueda con la variable searchterm. -->
+      <p-button type="submit" label="Buscar" (onClick)="getUsers()"></p-button>
+    </div>
   </div>
 </div>
 <app-alert

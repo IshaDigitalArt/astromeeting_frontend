@@ -16,6 +16,8 @@ export class AdminComponent extends BaseComponent {
   userData: AuthModel.User;
   users: Array< AuthModel.User>;
   //Define el constructor del componente que recibe varios parámetros
+  searchterm!: string; // Agregamos una variable para almacenar el término de búsqueda
+
   constructor(
     protected readonly api: ApiService,
     private readonly auth: AuthService,
@@ -33,10 +35,15 @@ export class AdminComponent extends BaseComponent {
   // Agregué este método para obtener usuarios
   getUsers() {
     this.api.getService({ url: `${UriConstants.USERS}` }).subscribe((response: any) => {
-      this.users = response.response.filter((user: any) => user.roleId !== 1)
+      this.users = response.response.filter((user: any) => user.roleId !== 1);
+      if (this.searchterm) { // Si hay un término de búsqueda, filtramos los usuarios
+        this.users = this.users.filter(user => {
+          const fullName = `${user.firstName} ${user.lastName}`;
+          return fullName.toLowerCase().includes(this.searchterm.toLowerCase());
+        });
+      }
     });
   }
-
   // Agregué este método para eliminar la cuenta del usuario
   handleDeleteUser(userId: number) {
     console.log(userId)

@@ -29,8 +29,8 @@
   box-shadow:
     0 0 8rem 0 rgba(black, 0.1),
     0rem 2rem 4rem -3rem rgba(black, 0.5);
-  max-height: 600px;
   overflow-y: auto;
+  max-height: 60vh;
 
   .contact.bar {
     flex-basis: 3.5rem;
@@ -39,11 +39,16 @@
     box-sizing: border-box;
   }
 
+  .tablaUsuarios {
+    overflow: auto;
+  }
+
   table {
+    overflow-y: auto;
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9em;
-    font-family: Arial,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
@@ -69,9 +74,44 @@
         border-bottom: 2px solid #92B2B5;
       }
     }
+
     ::ng-deep p-button[type="button"] .p-button:hover {
-      background-color: red!important;
-      border-color: red!important;
+      background-color: red !important;
+      border-color: red !important;
     }
+  }
+}
+
+.input {
+  box-sizing: border-box;
+  flex-basis: 4rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem 0 1.5rem;
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: color 200ms;
+  }
+
+  input {
+    border: none;
+    background-image: none;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 1.125rem;
+    flex-grow: 2;
+    box-shadow:
+      0 0 1rem rgba(black, 0.1),
+      0rem 1rem 1rem -1rem rgba(black, 0.2);
+
+    font-family: Red hat Display, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+
   }
 }

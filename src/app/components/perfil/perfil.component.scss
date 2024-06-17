@@ -22,7 +22,6 @@
 
 .columna {
   flex: 1;
-  padding: 20px;
 }
 
 .cabecera,
@@ -68,3 +67,20 @@ h1,
   border: green !important;
 }
 
+/* Media query para pantalla pequeña */
+@media (max-width: 768px) {
+  .cuerpoPerfil {
+    margin: 2rem;
+    width: min-content;
+    display: inline-block;
+  }
+  .columna {
+    flex: 1 0 100%; /* Ancho del 100% para que se coloquen debajo */
+  }
+  .botones {
+    display: inline-flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 20px;
+  }
+}

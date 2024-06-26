@@ -1,10 +1,15 @@
-# ChatFrontend
+# AstromeetingFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Or Run `npm install` and then `npm start` for install all dependences and run the main proyect. You may need to do this in backend too.
+
+## Database
+
+Install on your computer the last version of Xammpp and then go to folder `src/db/chat.sql` in this repository, just create a database called 'chat' and drag archive sql into Xampp.
 
 ## Code scaffolding
 
